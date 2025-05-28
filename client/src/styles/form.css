@@ -1,0 +1,124 @@
+.grid-container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 8fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    height: 300px;
+    margin: 50px;
+    padding: 20px 60px 50px 20px;
+    border: 5px solid #1f60b6;
+}
+
+.grid-container.alone {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;
+  gap: 10px;              
+  height: 300px;
+  margin: 50px;
+  padding: 20px 20px 50px 20px;
+  border: 5px solid #1f60b6;
+}
+
+
+.none {
+    display: none;
+}
+.a ,.b {
+  width: 90%;
+  padding: 5px;
+}
+
+.c {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  grid-row: 1 / span 2;
+  grid-column: 2;
+}
+
+.shorten_url,
+.shorten_button {
+  display: block;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.shorten_url {
+  padding: 10px;
+}
+
+.shorten_url:invalid {
+  border: 1px solid red;
+}
+
+.shortURL{
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.shortURL_button {
+  all: unset;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 28px;
+  width: 36px;
+  height: 40px;
+}
+
+.shorten_button {
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  background-color: #1f60b6;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin:0px;
+  }
+
+  .grid-container.alone {
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      grid-template-columns: 8fr 2fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0px;
+      height: 300px;
+      margin: 0px;
+      padding: 20px 20px 50px 20px;
+      border: 5px solid #1f60b6;
+  }
+
+  .a,.b,.c {
+    width: 100%;
+  }
+
+  .c {
+    margin-top: 50px;
+    align-items: center;
+  }
+
+  /* .codigo-qr{
+    width: 186px;
+    height: 186px;
+  } */
+
+}
