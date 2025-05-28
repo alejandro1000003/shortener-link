@@ -44,7 +44,7 @@ app.post('/api/shorten', (req, res) => {
       console.error("Error al guardar en DB:", err);
       return res.status(500).json({ error: 'Error al guardar en la base de datos' });
     }
-    res.json({ shortUrl: `https://shortener-link-ll8e.onrender.com:${port}/${code}` });
+    res.json({ shortUrl: `https://shortener-link-ll8e.onrender.com/${code}` });
   });
 
   stmt.finalize();
