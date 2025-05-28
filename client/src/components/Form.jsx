@@ -49,7 +49,7 @@ function App() {
         originalUrl: formattedUrl,
       });
 
-      setShortUrl(res.data.shortUrl || 'Error');
+      setShortUrl(res.data.shortUrl || 'Error, no se pudo acortar la URL');
     } catch (err) {
       console.error('Error acortando la URL', err);
       setError('Error al acortar');
