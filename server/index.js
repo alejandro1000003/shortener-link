@@ -10,8 +10,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3001;
-const baseUrl = `http://localhost:${port}`;
-// const baseUrl = 'https://shortener-link-ll8e.onrender.com';
+// const baseUrl = `http://localhost:${port}`;
+const baseUrl = 'https://shortener-link2.onrender.com';
 
 app.use(cors());
 app.use(express.json());
