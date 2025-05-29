@@ -13,7 +13,10 @@ const port = process.env.PORT || 3001;
 // const baseUrl = `http://localhost:${port}`;
 const baseUrl = `https://shortener-link2.onrender.com`;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://shortener-link2.onrender.com',
+}));
+
 app.use(express.json());
 
 const sqlite = sqlite3.verbose();
