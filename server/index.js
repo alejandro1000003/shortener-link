@@ -10,11 +10,12 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3001;
+const baseUrl = `http://localhost:${port}`;
+// const baseUrl = 'https://shortener-link-ll8e.onrender.com';
 
 app.use(cors());
 app.use(express.json());
 
-// Conexión e inicialización de la base de datos
 const sqlite = sqlite3.verbose();
 const db = new sqlite.Database('./database.db');
 
@@ -29,7 +30,6 @@ db.serialize(() => {
   `);
 });
 
-// Crear enlace acortado
 app.post('/api/shorten', (req, res) => {
   const { originalUrl } = req.body;
   if (!originalUrl) {
@@ -44,13 +44,12 @@ app.post('/api/shorten', (req, res) => {
       console.error("Error al guardar en DB:", err);
       return res.status(500).json({ error: 'Error al guardar en la base de datos' });
     }
-    res.json({ shortUrl: `https://shortener-link-ll8e.onrender.com/${code}` });
+    res.json({ shortUrl: `${baseUrl}/${code}` });
   });
 
   stmt.finalize();
 });
 
-// Redirigir desde código acortado
 app.get('/:code', (req, res) => {
   const { code } = req.params;
   db.get("SELECT originalUrl FROM links WHERE code = ?", [code], (err, row) => {
@@ -73,13 +72,11 @@ app.get('/:code', (req, res) => {
   });
 });
 
-// Servir frontend
 app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// Arrancar servidor
 app.listen(port, () => {
-  console.log(`API corriendo en https://shortener-link-ll8e.onrender.com:${port}`);
+  console.log(`API corriendo en ${baseUrl}`);
 });
