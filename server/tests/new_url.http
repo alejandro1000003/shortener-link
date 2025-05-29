@@ -1,4 +1,4 @@
-POST https://shortener-link-ll8e.onrender.com/api/shorten
+POST https://shortener-link2.onrender.com/api/shorten
 Content-Type: application/json
 
 {
