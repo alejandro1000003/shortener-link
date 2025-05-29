@@ -45,7 +45,7 @@ function App() {
         return;
       }
 
-      const res = await axios.post('https://shortener-link-ll8e.onrender.com/api/shorten', {
+      const res = await axios.post('https://shortener-link2.onrender.com/api/shorten', {
         originalUrl: formattedUrl,
       });
 

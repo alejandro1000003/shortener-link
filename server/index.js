@@ -10,8 +10,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3001;
-// const baseUrl = `http://localhost:${port}`;
-const baseUrl = 'https://shortener-link2.onrender.com';
+const baseUrl = `http://localhost:${port}`;
+// const baseUrl = `https://shortener-link2.onrender.com`;
 
 app.use(cors());
 app.use(express.json());
@@ -50,8 +50,13 @@ app.post('/api/shorten', (req, res) => {
   stmt.finalize();
 });
 
-app.get('/:code', (req, res) => {
+const frontendBuildPath = path.join(__dirname, '../client/dist');
+
+app.use(express.static(frontendBuildPath));
+
+app.get('/:code', (req, res, next) => {
   const { code } = req.params;
+
   db.get("SELECT originalUrl FROM links WHERE code = ?", [code], (err, row) => {
     if (err) {
       console.error("DB error:", err);
@@ -61,25 +66,15 @@ app.get('/:code', (req, res) => {
     if (row?.originalUrl) {
       res.redirect(row.originalUrl);
     } else {
-      const indexPath = path.join(__dirname, 'dist', 'index.html');
-      res.status(404).sendFile(indexPath, (sendErr) => {
-        if (sendErr) {
-          console.error("Error enviando index.html:", sendErr);
-          res.status(500).send("Error interno del servidor");
-        }
-      });
+      res.redirect('/');
     }
   });
 });
 
-const distPath = path.join(__dirname, '../dist');
-
-app.use(express.static(distPath));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
 app.listen(port, () => {
-  console.log(`API corriendo en ${baseUrl}`);
+  console.log(`Servidor de Node.js (API y Frontend) corriendo en ${baseUrl}`);
 });
