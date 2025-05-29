@@ -5,10 +5,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# React build
-client/dist/
-client/build/
-
 # Env files
 .env
 .env.local
