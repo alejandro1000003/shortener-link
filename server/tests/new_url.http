@@ -1,4 +1,4 @@
-POST https://localhost:3001/api/shorten
+POST https://shortener-link2.onrender.com/api/shorten
 Content-Type: application/json
 
 {

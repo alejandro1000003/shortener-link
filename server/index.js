@@ -50,7 +50,7 @@ app.post('/api/shorten', (req, res) => {
   stmt.finalize();
 });
 
-const frontendBuildPath = path.join(__dirname, '../client/dist');
+const frontendBuildPath = path.join(__dirname, 'client/dist');
 
 app.use(express.static(frontendBuildPath));
 
